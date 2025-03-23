@@ -1,0 +1,52 @@
+site_name: sd-notifier
+repo_url: https://github.com/mberglof/sd-notifier
+site_url: https://mberglof.github.io/sd-notifier
+site_description: Simple playground for systemd and python
+site_author: Marcus Berglof
+edit_uri: edit/main/docs/
+repo_name: mberglof/sd-notifier
+copyright: Maintained by <a href="https://mberglof.com">mberglof</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["sd_notifier"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mberglof/sd-notifier
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/sd-notifier
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
