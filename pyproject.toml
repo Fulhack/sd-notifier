@@ -19,9 +19,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://mberglof.github.io/sd-notifier/"
-Repository = "https://github.com/mberglof/sd-notifier"
-Documentation = "https://mberglof.github.io/sd-notifier/"
+Homepage = "https://fulhack.github.io/sd-notifier/"
+Repository = "https://github.com/fulhack/sd-notifier"
+Documentation = "https://fulhack.github.io/sd-notifier/"
 
 [dependency-groups]
 dev = [
@@ -35,6 +35,7 @@ dev = [
     "mkdocs>=1.4.2",
     "mkdocs-material>=8.5.10",
     "mkdocstrings[python]>=0.26.1",
+    "debugpy>=1.8.13",
 ]
 
 [build-system]
