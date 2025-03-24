@@ -1,0 +1,41 @@
+# vim: ft=systemd
+[Unit]
+Description=sd notify tester for %N %n
+Documentation=man:sd_notify(1)
+
+[Service]
+Type=notify-reload
+NotifyAccess=all
+#Environment=DISPLAY=:0
+Environment=PYTHONUNBUFFERED=1
+Environment=PYDEVD_DISABLE_FILE_VALIDATION=1
+Environment=DEBUG=0
+Environment=APP_DIR=%h/Projects/fulhack/sd-notifier
+Environment=PATH="%h/.local/bin:$PATH"
+ExecStartPre=echo Hello from %N, data dir=%D, config=%E, log dir=%L, creds=%c
+ExecStartPre=-touch %D/sd-notify-tester.run
+ExecStartPre=-@/home/mberglof/Projects/fulhack/sd-notifier/start.sh sd-start HALLO
+; ExecStart=-@/home/mberglof/Projects/fulhack/sd-notifier/sd-notifier.sh sd-notifyer  HALLO
+ExecStart=@/home/mberglof/.local/bin/uv sd-notifier run --directory ${APP_DIR} --only-dev python sd-notifier.py
+#TimeoutStartSec=
+
+#ExecStop=/home/mberglof/.tmux/plugins/tmux-resurrect/scripts/save.sh
+#ExecStop=/usr/bin/tmux kill-server
+# $SERVICE_RESULT, $EXIT_CODE and $EXIT_STATUS
+; BusName=dev.fulhack.sd-notify-tester
+ExecCondition=echo Always ExecCondition, %N
+ExecStop=-rm %D/sd-notify-tester.run
+ExecStopPost=echo Always ExecStopPost, %i SERVICE_RESULT=${SERVICE_RESULT}
+ExecStopPost=-@/home/mberglof/Projects/fulhack/sd-notifier/stop.sh sd-stop HALLO
+KillSignal=TERM
+#ExecReload=kill -HUP $MAINPID
+#KillMode=process
+Restart=on-failure
+# ConditionFileNotEmpty=
+# ConditionPathIsSymbolicLink=
+#RestartMode=debug
+
+RestartSec=2
+
+[Install]
+WantedBy=default.target
