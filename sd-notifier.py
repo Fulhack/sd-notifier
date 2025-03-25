@@ -29,7 +29,7 @@ pid = os.getpid()
 
 def start_debugging() -> None:
     global debug, remote_debug
-    import debugpy
+    import debugpy  # type: ignore[import-untyped]
 
     debug = True
     remote_debug = False
@@ -150,7 +150,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(line_buffering=True)
+    sys.stdout.reconfigure(line_buffering=True)  # type: ignore[union-attr]
     # sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', buffering=1)
     print("Starting app, pid:", pid)
     main()
